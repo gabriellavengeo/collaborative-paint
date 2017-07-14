@@ -50,6 +50,10 @@
         }
     });
 
+    socket.on('message', function (msg) {
+        alert(msg);
+    });
+
     var canvas = $('#paint')[0];
     var ctx = canvas.getContext('2d');
 
@@ -115,7 +119,6 @@
             // Save drawing session
             $('#save').click(function (e) {
                 socket.emit('save');
-                alert("Your drawing session is saved!");
             });
 
             // Exit drawing session and switch to home view
@@ -171,6 +174,7 @@
         },
         onDraw: function (e) {
             if (this.isDrawing) {
+                this.ctx.moveTo(this.posX, this.posY);
                 var pointPrev = {
                     x: this.posX,
                     y: this.posY,

@@ -3,6 +3,8 @@ var app = express();
 app.use(express.static(__dirname + '/public'));
 
 var server = require('http').createServer(app).listen(3000);
+console.log('Server is up and running!');
+
 var io = require('socket.io')(server);
 
 var MongoClient = require('mongodb').MongoClient;
@@ -16,6 +18,11 @@ app.get('/', function (req, res) {
 var sessions = {};
 
 MongoClient.connect(dbUrl, function (err, db) {
+  if (err) {
+    console.log('Error, failed to connect to MongoDB.')
+    return;
+  }
+
   var collection = db.collection('drawings');
 
   // Get saved sessions from MongoDB, map them to the session object and emit them to client
@@ -40,6 +47,10 @@ io.on('connection', function (client) {
     client.emit('sessions', sessions);
 
     MongoClient.connect(dbUrl, function (err, db) {
+      if (err) {
+        console.log('Error, failed to connect to MongoDB.');
+        return;
+      }
       var collection = db.collection('drawings');
       // On save event add entry to MongoDB drawings collection
       client.on('save', function () {
@@ -49,9 +60,14 @@ io.on('connection', function (client) {
         }
         collection.save(doc, null,
         function (err, response) {
-          // Clear the undo/redo history after saving the canvas
-          sessions[room].undo = [];
-          sessions[room].redo = [];
+          if (!err) {
+            // Clear the undo/redo history after saving the canvas
+            sessions[room].undo = [];
+            sessions[room].redo = [];
+            client.emit('message', "Your drawing session is saved!");
+          } else {
+            client.emit('message', "Something went wrong!");
+          }
         });
       });
     });
@@ -90,8 +106,6 @@ io.on('connection', function (client) {
     });
 
     client.on('clear', function () {
-      sessions[room].undo = [];
-      sessions[room].redo = [];
       sessions[room].canvas = '';
       io.sockets.in(room).emit('clear');
     });

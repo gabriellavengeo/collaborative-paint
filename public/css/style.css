@@ -1,0 +1,96 @@
+body {
+    background: rgba(0, 0, 0, 0.2);
+    margin: 0;
+    padding: 0;
+}
+
+.view {
+    background: white;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 100%;
+}
+
+#paint {
+    cursor: crosshair;
+}
+
+.home {
+    text-align: center;
+    width: 400px;
+    padding: 20px;
+}
+
+.home > * {
+    padding: 15px;
+}
+
+.canvas {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+}
+
+button {
+    padding: 8px 10px;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+button:hover {
+    color: white;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+button.red {
+    background: red;
+    color: white
+}
+
+button.blue {
+    background: blue;
+    color: white;
+}
+
+button.green {
+    background: green;
+    color: white
+}
+
+button.yellow {
+    background: yellow;
+}
+
+button.purple {
+    background: purple;
+    color: white;
+}
+
+button.color:hover, button#new:hover {
+    opacity: 0.8;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    display: flex;
+    padding: 10px;
+}
+
+button.join-room {
+    margin-left: auto;
+}
+
+.hide {
+    visibility: hidden;
+    height: 0;
+    width: 0;
+    margin-left: -9999px;
+}
