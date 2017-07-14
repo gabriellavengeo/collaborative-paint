@@ -1,0 +1,138 @@
+<!doctype html>  
+<html lang="en">  
+    <head>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/lib/jquery.js"></script>
+        <style>
+            body {
+                background: rgba(0, 0, 0, 0.2);
+                margin: 0;
+                padding: 0;
+            }
+
+            .view {
+                background: white;
+                margin-left: auto;
+                margin-right: auto;
+                min-height: 100%;
+            }
+
+            #paint {
+                cursor: crosshair;
+            }
+
+            .home {
+                text-align: center;
+                width: 400px;
+                padding: 20px;
+            }
+
+            .home > * {
+                padding: 15px;
+            }
+
+            .canvas {
+                position: absolute;
+                top: 0;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                text-align: center;
+            }
+
+            button {
+                padding: 8px 10px;
+                background: white;
+                border: 1px solid rgba(0, 0, 0, 0.2);
+                border-radius: 5px;
+                margin: 5px 0;
+            }
+
+            button:hover {
+                color: white;
+                background: rgba(0, 0, 0, 0.3);
+            }
+
+            button.red {
+                background: red;
+            }
+
+            button.blue {
+                background: blue;
+            }
+
+            button.green {
+                background: green;
+            }
+
+            button.yellow {
+                background: yellow;
+            }
+
+            button.purple {
+                background: purple;
+            }
+
+            ul {
+                padding: 0;
+            }
+            
+            li {
+                display: flex;
+                padding: 10px;
+            }
+
+            button.join-room {
+                margin-left: auto;
+            }
+
+            .hide {
+                visibility: hidden;
+                height: 0;
+                width: 0;
+                margin-left: -9999px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="view home">
+            <div><button class="green" id="new">New Drawing Session</button></div> 
+            <div id="sessions-list-ctrl">
+                <ul id="sessions-list"></ul>
+            </div>
+        </div>
+        <div class="view canvas hide">
+            <h1 id="title"></h1>
+            <canvas width="600" height="400" id="paint"></canvas>
+            <div>
+                <div id="colors-ctrl">
+                    <button class="color white" data-color="white">White</button>
+                    <button class="color yellow" data-color="yellow">Yellow</button>
+                    <button class="color green" data-color="green">Green</button>
+                    <button class="color blue" data-color="blue">Blue</button>
+                    <button class="color purple" data-color="purple">Purple</button>
+                    <button class="color red" data-color="red">Red</button>
+                </div>
+                Pen size:
+            <select id="pen-size">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3" selected>3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+            <button id="clear">Clear canvas</button>
+            <button id="undo">Undo</button>
+            <button id="redo">Redo</button>
+            <button id="save">Save</button>
+            <button id="exit">Exit</button>
+            </div>
+        </div>
+        <script src="/app.js"></script>
+    </body>
+</html>
