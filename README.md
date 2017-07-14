@@ -9,6 +9,6 @@ Epidemic Paind - Collaborative Web Drawing
 
 3. Open command prompt, `cd` the directory of the project and run `npm install`.
 
-4. In command prompt `cd` to C:\Program Files\MongoDB\Server\3.4\bin (assuming that's where you have MongoDB installed) and run `mongod --dbpath=<path to the project folder>\mongodb\data` to start MongoDB (you can save the current dbpath setting in case you want to restore it later).
+4. In command prompt `cd` to C:\Program Files\MongoDB\Server\3.4\bin (assuming that's where you have MongoDB installed) and run `mongod --dbpath=<path to whatever folder you want to have your database in>` to start MongoDB.
 
 5. Open command prompt in your directory, run `node index.js` and access the app on `localhost:3000`.
