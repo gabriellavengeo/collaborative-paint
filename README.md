@@ -1,5 +1,6 @@
-# epidemic-paint
-Epidemic Paind - Collaborative Web Drawing
+# Collaborative Web Drawing
+
+Technologies: NodeJS, Express, Socket.io
 
 # Setup
 
